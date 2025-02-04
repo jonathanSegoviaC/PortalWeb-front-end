@@ -1,0 +1,45 @@
+.dropdown-button {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    text-align: center;
+    display: block;
+    margin: 10px 0;
+    width: 200px;
+  }
+  
+  .dropdown-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .dropdown-content {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid transparent;
+    background-color: transparent;
+  }
+  
+  .form-table th, .form-table td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .form-table th {
+    background-color: transparent;
+  }
+  
+  .form-table input[type="text"], 
+  .form-table input[type="email"], 
+  .form-table input[type="file"] {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+  }
+  
+  .form-table small {
+    display: block;
+    margin-top: 5px;
+  }
+  
