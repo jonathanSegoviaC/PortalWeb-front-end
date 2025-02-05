@@ -78,8 +78,11 @@ import ReporteCorreos from "./pages/ReporteCorreos"
 import ReporteGestion from "./pages/ReporteGestion";
 import Producto from "./pages/Producto.jsx"; // Importa la página de Producto
 import ReporteSincronizacion from "./pages/ReporteSincronizacion.jsx"
+import Mapa from "./components/mapas/mapa"
+import MapaVendedores from "./components/mapas/ubicacionVendedores.jsx"
+import ReporteUbicacionVendedor from "./pages/UbicacionReporteVendedor.jsx"
+import ReporteGeorreferenciacionCliente from "./pages/ReporteGeorreferenciacionCliente.jsx"
 function App() {
-
 
   return (
     <Router>
@@ -115,6 +118,11 @@ function App() {
           <Route path="/reporte-gestion" element={<ReporteGestion />} />
           <Route path="/consulta-gestion" element={<ReporteGestion />} />
           <Route path="/reporte-sincronizacion" element={<ReporteSincronizacion />} />
+          <Route path="/Mapa" element={<Mapa/>}></Route>
+          <Route path="/MapaVendedores" element={<MapaVendedores/>}></Route>
+          <Route path="/reporte-ubicacion-vendedor" element={<ReporteUbicacionVendedor />} />
+          <Route path="/reporte-georreferenciacion" element={<ReporteGeorreferenciacionCliente />} />
+          
         </Route>
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/updatepassword" element={<UpdatePassword />} />

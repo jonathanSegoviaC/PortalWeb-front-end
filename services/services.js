@@ -422,3 +422,59 @@ export const getReportePedidos = async (orden) => {
     throw error;
   }
 };
+
+export const getGeorreferenciacionCliente = async (page) => {
+  const api = `http://home.mydealer.ec:8000/api/direccion/envio/gps?page=${page}`;
+  try {
+    const response = await axios.get(api);
+    console.log("Respuesta completa de la API:", response.data);
+
+    // Manejar ambos casos: API devuelve array directo o datos paginados
+    if (Array.isArray(response.data)) {
+      console.log("API devolvió un array directamente.");
+      return { data: response.data, last_page: 1, current_page: page };
+    } else if (response.data && response.data.datos && Array.isArray(response.data.datos.data)) {
+      console.log("API devolvió datos paginados.");
+      return {
+        data: response.data.datos.data,
+        last_page: response.data.datos.last_page || 1,
+        current_page: response.data.datos.current_page || page,
+      };
+    } else {
+      console.error("Estructura inesperada en la respuesta de la API:", response.data);
+      return { data: [], last_page: 1, current_page: page };
+    }
+  } catch (error) {
+    console.error("Error en la API:", error);
+    throw new Error(`Error al consultar dirección de envío: ${error.message}`);
+  }
+};
+
+const BASE_URL = "http://127.0.0.1:8000/api"; // Asegúrate de que sea la correcta
+
+export const getReporteVendedores = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/vendedor/coordenadas/reporte`);
+    return response.data;
+  } catch (error) {
+    console.error("Error al obtener el reporte de vendedores:", error);
+    throw error;
+  }
+};
+export const getUbicacionVendedores = async () => {
+  try {
+      const response = await axios.get(`${BASE_URL}/vendedor/coordenadas`);
+      console.log("Respuesta completa de la API:", response.data);
+
+      // Verificamos que la API devuelva datos válidos
+      if (response.data && response.data.datos && Array.isArray(response.data.datos)) {
+          return response.data.datos; // Retornamos solo el array de vendedores
+      } else {
+          console.error("Estructura inesperada en la API:", response.data);
+          return [];
+      }
+  } catch (error) {
+      console.error("Error al obtener ubicaciones:", error);
+      return [];
+  }
+};
